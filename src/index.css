@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Playwrite+RO:wght@100..400&family=Tagesschrift&display=swap');
+@import 'tailwindcss';
+
+
+* {
+  font-family: "Tagesschrift", system-ui;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@theme {
+  --color-primary: #5044e5;
+}
