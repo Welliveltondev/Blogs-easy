@@ -9,6 +9,7 @@ import ListBlog from './pages/admin/ListBlog'
 import Comments from './pages/admin/Comments'
 import Login from './components/admin/Login'
 import AddBlog from './pages/admin/AddBlog'
+import 'quill/dist/quill.snow.css'
 
 const App = () => {
   return (
