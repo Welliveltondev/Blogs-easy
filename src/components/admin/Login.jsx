@@ -1,11 +1,28 @@
 import React, { useState } from 'react'
+import { useAppContext } from '../../context/AppContext'
+import toast from 'react-hot-toast'
 
 const Login = () => {
+  const {axios, setToken} = useAppContext()
+
   const [password,setPassWord] = useState()
   const [email,setEmail] = useState()
 
-  const handleSubmit = (e) => {
-    e.predentFefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const {data}  = await axios.post('/api/admin/login', {email, password})
+
+      if (data.success){
+        setToken(data.token)
+        localStorage.setItem('token', data.token)
+        axios.defaults.headers.common['Authorization'] = data.token;      
+      } else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
   return (
@@ -29,7 +46,7 @@ const Login = () => {
               <label htmlFor="">Password</label>
                 <input onChange={e=> setPassWord(e.target.value)} value={password} 
                 className='border-b-2 border-gray-300 p-2 outline-none  mb-6' 
-                type="email" required placeholder='Your password' />
+                type="password" required placeholder='Your password' />
             </div>
             <button type='submit' 
             className='w-full py-3 font-medium bg-primary text-white rounded cursor-pointer hover:bg-primary/90'>Login</button>
