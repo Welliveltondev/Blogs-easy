@@ -28,9 +28,9 @@ const Blog = () => {
 
   const fetchComents = async () => {
   try {
-    const {data} = await axios.post(`/api/blog/comments`, {blogId: id})
+    const {data} = await axios.post('/api/blog/comments', {blogId: id})
     if (data.success){
-      setComents(data.comments_data)
+      setComents(data.coments)
     }else{
       toast.error(data.message)
     }
